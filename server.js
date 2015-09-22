@@ -19,7 +19,7 @@ app.post('/setVoice', function(req, res){
   }).catch(function(err){
     console.log(err);
   });
-  res.send('<Response><Say language="ja-jp">録音が終わりました</Say></Response>');
+  res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Say language="ja-jp">録音が終わりました</Say></Response>');
 });
 app.listen(port);
 console.log("surver running at localhost:" + port);
