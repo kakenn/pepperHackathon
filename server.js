@@ -7,7 +7,7 @@ var ncmb = new NCMB("07f9eb21dd8db1dc715c77d272561004dd1941a3adc961f6d4e51d649d8
 var TwilioData = ncmb.DataStore("twilioData");
 
 app.use(express.static('public'));
-app.get('/setVoice', function(req, res){
+app.post('/setVoice', function(req, res){
   var data = new TwilioData({
     url: req.param('RecordingUrl'),
     time: req.param('RecordingDuration')
