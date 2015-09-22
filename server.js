@@ -11,8 +11,8 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.post('/setVoice', function(req, res){
   var data = new TwilioData({
-    url: req.param('userRecordingUrl'),
-    time: req.param('userRecordingDuration')
+    url: req.param('RecordingUrl'),
+    time: req.param('RecordingDuration')
   });
   data.save().then(function(data){
     console.log(data);
