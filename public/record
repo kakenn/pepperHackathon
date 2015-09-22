@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Record timeout="10" transcribe="true" />
+    <Record timeout="10" action="http://pepperhackathon.azurewebsites.net/setVoice" />
 </Response>
