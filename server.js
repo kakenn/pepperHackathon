@@ -89,7 +89,7 @@ app.get('/createTopicPost', function(req, res){
 */
 app.get('/topicList', function(req, res){
   var limit = req.param('limit') || 30;
-  Topic.limit(limit).order("createDate",true).fetchAll().then(results=>{
+  Topic.limit(limit).order("createDate",true).fetchAll().then(function(results){
     res.send(JSON.stringify({status:"success", records:results}));
   }).catch(function(err){
     res.send('{status:"false"}');
@@ -103,7 +103,7 @@ app.get('/topicList', function(req, res){
 app.get('/topicListPost', function(req, res){
   if(req.param('topicId')){
     var limit = req.param('limit') || 30;
-    TopicPost.equalTo("topic", req.param('topicId')).limit(limit).order("createDate",true).req.param('topicId').fetchAll().then(results=>{
+    TopicPost.equalTo("topic", req.param('topicId')).limit(limit).order("createDate",true).req.param('topicId').fetchAll().then(function(results){
       res.send(JSON.stringify({status:"success", records:results}));
     }).catch(function(err){
       res.send('{status:"false"}');
@@ -119,7 +119,7 @@ app.get('/topicListPost', function(req, res){
 */
 app.get('/wordList', function(req, res){
   var limit = req.param('limit') || 10;
-  Word.limit(limit).order("createDate",true).req.param('topicId').fetchAll().then(results=>{
+  Word.limit(limit).order("createDate",true).req.param('topicId').fetchAll().then(function(results){
     res.send(JSON.stringify({status:"success", records:results}));
   }).catch(function(err){
     res.send('{status:"false"}');
