@@ -143,11 +143,27 @@ app.get('/listTrend', function(req, res){
         return index;
       });
       Promise.all(tasks).then(function(results) {
+        results = results.filter(function(index) {
+          console.log(index);
+          return index!=false;
+        });
         res.send(results);
+      }).catch(function(){
       });
     }else{
-      console.log(err);
-      res.send(err);
+      var tasks = [];
+      obj = [{name:'シルバーウィーク最終日'}];
+      obj = obj.map(function(index, elem) {
+        tasks.push(getTextCategory(index.name));
+        return index;
+      });
+      Promise.all(tasks).then(function(results) {
+        results.filter(function(index) {
+          return JSON.stringify({})!==JSON.stringify(index);
+        });
+        res.send(results);
+      }).catch(function(){
+      })
     }
   });
 });
@@ -161,9 +177,12 @@ function getTextCategory(text){
       json: true
     }, function (error, response, body) {
       if (!error && !body["requestError"]) {
-        resolve(body);
+        temp_body = body;
+        temp_body.clusters = body.clusters[0].cluster_name;
+        console.log(temp_body);
+        resolve(temp_body);
       } else {
-        resolve({});
+        resolve(false);
       }
     });
   });
